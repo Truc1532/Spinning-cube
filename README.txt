@@ -3,10 +3,17 @@
     GL dev library (atleast 1.2)
     GLEW dev library (alteast 2.2)
     SDL2 library (atleast 2.0)
+    automake
+    autoreconf
+    make
     GNU Compiler collection
 
 ---BUILD---
-  First you'll need allow autogen.sh to run as a porgram:
+  Make sure your inside the programs directory:
+    cd path/to/program/directory
+  (replace the path/to/program/directory with the actual directory names)
+
+  Then, you'll need allow autogen.sh to run as a porgram:
     chmod +x autogen.sh
 
   Then run the autogen.sh
