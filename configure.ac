@@ -8,11 +8,6 @@ if test "x$have_sdl2" = "xno"; then
     AC_MSG_ERROR([SDL2 library is required but not found])
 fi
 
-PKG_CHECK_MODULES([JACK], [jack >= 1.9], [have_jack=yes], [have_jack=no])
-if test "x$have_jack" = "xno"; then
-    AC_MSG_ERROR([libjack library is required but not found])
-fi
-
 PKG_CHECK_MODULES([OPENGL], [gl >= 1.2], [have_opengl=yes], [have_opengl=no])
 if test "x$have_opengl" = "xno"; then
     AC_MSG_ERROR([OpenGL 1.2 is required but not found])
