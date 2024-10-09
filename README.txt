@@ -4,7 +4,7 @@
     GLEW dev library (alteast 2.2)
     SDL2 library (atleast 2.0)
     automake
-    autoreconf
+    autoconf
     make
     GNU Compiler collection
 
