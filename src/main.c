@@ -180,8 +180,8 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         angleX += 0.01f;
-        angleY += 0.01f;
-        angleZ += 0.01f;
+        angleY += 0.02f;
+        angleZ += 0.015f;
 
         float rotationMatrix[16];
         createRotationMatrix(angleX, angleY, angleZ, rotationMatrix);
