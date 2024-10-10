@@ -22,4 +22,7 @@
   If the configuration ended successfully run the makefile:
     make
 
-  And that's it ! You can now run the executable and enjoy !.
+  Lastly run this command:
+    sudo make install
+
+  You can wright 'Spinning_cube' in the terminal (no matter which directory) to run the program !
