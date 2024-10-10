@@ -15,6 +15,7 @@ const GLchar* vertexShaderSource = R"(
     }
 )";
 
+
 const GLchar* fragmentShaderSource = R"(
     #version 460 core
     in vec3 ourColor;
@@ -24,48 +25,27 @@ const GLchar* fragmentShaderSource = R"(
     }
 )";
 
+
 float vertices[] = {
-    -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
+  
+    -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f, 
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  
+     0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f, 
 
-    -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  
-     0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  
+     0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 0.0f   
+};
 
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  
-    -0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
-
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 1.0f,  
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 1.0f,
-
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f,  
-     0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f
+unsigned int indices[] = {
+    0, 1, 2,  2, 3, 0, 
+    4, 5, 6,  6, 7, 4,  
+    0, 1, 5,  5, 4, 0,  
+    3, 2, 6,  6, 7, 3,  
+    0, 3, 7,  7, 4, 0,  
+    1, 2, 6,  6, 5, 1   
 };
 
 GLuint compileShader(GLenum type, const GLchar* source) {
@@ -83,6 +63,7 @@ GLuint compileShader(GLenum type, const GLchar* source) {
 
     return shader;
 }
+
 
 void createRotationMatrix(float angleX, float angleY, float angleZ, float* matrix) {
     float cosX = cos(angleX);
@@ -119,7 +100,7 @@ int main() {
         return -1;
     }
 
-    SDL_Window* window = SDL_CreateWindow("Spinning Cube", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Spinning 3D Cube", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (!window) {
         fprintf(stderr, "Failed to create SDL window\n");
         return -1;
@@ -137,19 +118,22 @@ int main() {
         return -1;
     }
 
-    GLuint VAO, VBO;
+    GLuint VAO, VBO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); // Position
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); // Color
     glEnableVertexAttribArray(1);
 
     GLuint vertexShader = compileShader(GL_VERTEX_SHADER, vertexShaderSource);
@@ -190,13 +174,14 @@ int main() {
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, rotationMatrix);
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         SDL_GL_SwapWindow(window);
     }
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
 
     SDL_GL_DeleteContext(context);
@@ -205,3 +190,4 @@ int main() {
 
     return 0;
 }
+
