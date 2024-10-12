@@ -65,29 +65,27 @@ GLuint compileShader(GLenum type, const GLchar* source) {
 }
 
 
-void createRotationMatrix(float angleX, float angleY, float angleZ, float* matrix) {
+void createRotationMatrix(float angleX, float angleY, float* matrix) {
     float cosX = cos(angleX);
     float sinX = sin(angleX);
     float cosY = cos(angleY);
     float sinY = sin(angleY);
-    float cosZ = cos(angleZ);
-    float sinZ = sin(angleZ);
 
-    matrix[0] = cosY * cosZ;
-    matrix[1] = sinX * sinY * cosZ - cosX * sinZ;
-    matrix[2] = cosX * sinY * cosZ + sinX * sinZ;
+    matrix[0] = cosY;
+    matrix[1] = 0.0f;
+    matrix[2] = -sinY;
     matrix[3] = 0.0f;
-
-    matrix[4] = cosY * sinZ;
-    matrix[5] = sinX * sinY * sinZ + cosX * cosZ;
-    matrix[6] = cosX * sinY * sinZ - sinX * cosZ;
+    
+    matrix[4] = sinX * sinY;
+    matrix[5] = cosX;
+    matrix[6] = sinX * cosY;
     matrix[7] = 0.0f;
-
-    matrix[8] = -sinY;
-    matrix[9] = sinX * cosY;
+    
+    matrix[8] = cosX * sinY;
+    matrix[9] = -sinX;
     matrix[10] = cosX * cosY;
     matrix[11] = 0.0f;
-
+    
     matrix[12] = 0.0f;
     matrix[13] = 0.0f;
     matrix[14] = 0.0f;
@@ -152,7 +150,7 @@ int main() {
     glEnable(GL_DEPTH_TEST);
 
     int running = 1;
-    float angleX = 0.0f, angleY = 0.0f, angleZ = 0.0f;
+    float angleX = 0.0f, angleY = 0.0f;
     while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -163,12 +161,11 @@ int main() {
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        angleX += 0.01f;
-        angleY += 0.02f;
-        angleZ += 0.015f;
+        angleX += 0.02f;
+        angleY += 0.01005f;
 
         float rotationMatrix[16];
-        createRotationMatrix(angleX, angleY, angleZ, rotationMatrix);
+        createRotationMatrix(angleX, angleY, rotationMatrix);
 
         GLint transformLoc = glGetUniformLocation(shaderProgram, "transform");
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, rotationMatrix);
@@ -190,4 +187,6 @@ int main() {
 
     return 0;
 }
+
+
 
