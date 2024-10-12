@@ -94,13 +94,20 @@ void createRotationMatrix(float angleX, float angleY, float* matrix) {
 
 int main() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        fprintf(stderr, "Failed to initialize SDL\n");
+        fprintf(stderr, "SDL2: %s\n", SDL_GetError());
         return -1;
     }
 
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    
     SDL_Window* window = SDL_CreateWindow("Spinning 3D Cube", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (!window) {
-        fprintf(stderr, "Failed to create SDL window\n");
+        fprintf(stderr, "SDL2: %s\n", SDL_GetError());
         return -1;
     }
 
@@ -110,9 +117,10 @@ int main() {
         return -1;
     }
 
+    GLenum glewError = glewInit();
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
-        fprintf(stderr, "Failed to initialize GLEW\n");
+        fprintf(stderr, "OpenGL: %s\n", glewGetErrorString(glewError));
         return -1;
     }
 
