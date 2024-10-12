@@ -159,6 +159,9 @@ int main() {
 
     int running = 1;
     float angleX = 0.0f, angleY = 0.0f;
+    float frameCount = 0;
+    float elapsedTime = 0.0f;
+    Uint32 lastTime = SDL_GetTicks();
     while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -182,6 +185,16 @@ int main() {
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         SDL_GL_SwapWindow(window);
+
+	frameCount++;
+	Uint32 currentTime = SDL_GetTicks();
+	elapsedTime += currentTime - lastTime;
+	lastTime = currentTime;
+	if (elapsedTime >= 3000.0f) [
+		printf("%.2fFPS\n", frameCount / (elapsedTime / 1000.0f));
+	    	frameCout = 0;
+	    	elapsedTime = 0.0f;
+    	}
     }
 
     glDeleteVertexArrays(1, &VAO);
