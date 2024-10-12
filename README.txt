@@ -1,5 +1,6 @@
 ---DEPENDENCIES---
   You will need:
+    OpenGL (openGL renderer atleast 4.6)
     GL dev library (atleast 1.2)
     GLEW dev library (alteast 2.2)
     SDL2 library (atleast 2.0)
